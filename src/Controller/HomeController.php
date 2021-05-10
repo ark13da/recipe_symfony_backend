@@ -1,5 +1,7 @@
 <?php
 
+//https://mysterious-shore-28269.herokuapp.com/recipe/all
+
 namespace App\Controller;
 
 use App\Entity\Recipes;
