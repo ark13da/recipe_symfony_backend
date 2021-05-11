@@ -5,7 +5,9 @@
 namespace App\Controller;
 
 use App\Entity\Recipes;
+
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -26,16 +28,16 @@ class HomeController extends AbstractController
      * @Route("/recipe/add", name="add_new_recipe" ,methods={"POST"})
      */
 
-    public function addRecipe(): Response
+    public function addRecipe(Request $request)
     {
-        //recipe/add?name=pancake&ingredients=flour,egg,milk
+        $entityManager=$this->getDoctrine()->getManager();
+        $data=json_decode($request->getContent(),true);
 
-        // if($_GET["name"]!==null && $_GET["ingredients"]!==null){
-        if(isset($_GET["name"]) && isset($_GET["ingredients"]) && isset($_GET["image"])){
-            $newName=$_GET['name'];
-            $newIngredeints=$_GET['ingredients'];
-            $newImage=$_GET['image'];
-            $entityManager=$this->getDoctrine()->getManager();
+        if(isset($data['name']) && isset($data['ingredients']) && isset($data['image'])){
+            $newName=$data['name'];
+            $newIngredeints=$data['ingredients'];
+            $newImage=$data['image'];
+
             $newRecipe=new Recipes();
             $newRecipe->setName($newName);
             $newRecipe->setIngredients($newIngredeints);

@@ -49,12 +49,12 @@ class Recipes
         return $this;
     }
 
-    public function getIngredients(): ?string
+    public function getIngredients(): ?array
     {
-        return $this->ingredients;
+        return array($this->ingredients);
     }
 
-    public function setIngredients(string $ingredients): self
+    public function setIngredients(array $ingredients): self
     {
         $this->ingredients = $ingredients;
 
