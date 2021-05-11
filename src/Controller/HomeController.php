@@ -28,7 +28,7 @@ class HomeController extends AbstractController
      * @Route("/recipe/add", name="add_new_recipe" ,methods={"POST"})
      */
 
-    public function addRecipe(Request $request)
+    public function addRecipe(Request $request) : Response
     {
         $entityManager=$this->getDoctrine()->getManager();
         $data=json_decode($request->getContent(),true);
