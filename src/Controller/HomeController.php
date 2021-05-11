@@ -43,7 +43,7 @@ class HomeController extends AbstractController
             $newRecipe->setName($newName);
             $newRecipe->setIngredients($newIngredeints);
             $newRecipe->setImage($newImage);
-            $newRecipe->setImage($newInstructions);
+            $newRecipe->setInstructions($newInstructions);
 
             $entityManager->persist($newRecipe);
             $entityManager->flush();
