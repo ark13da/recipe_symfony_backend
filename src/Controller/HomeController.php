@@ -37,11 +37,13 @@ class HomeController extends AbstractController
             $newName=$data['name'];
             $newIngredeints=$data['ingredients'];
             $newImage=$data['image'];
+            $newInstructions=$data['instructions'];
 
             $newRecipe=new RecipeList();
             $newRecipe->setName($newName);
             $newRecipe->setIngredients($newIngredeints);
             $newRecipe->setImage($newImage);
+            $newRecipe->setImage($newInstructions);
 
             $entityManager->persist($newRecipe);
             $entityManager->flush();
@@ -65,7 +67,8 @@ class HomeController extends AbstractController
                 'id'=>$recipe->getId(),
                 'name'=>$recipe->getName(),
                 'ingredients'=>$recipe->getIngredients(),
-                'image'=>$recipe->getImage()
+                'image'=>$recipe->getImage(),
+                'instructions'=>$recipe->getInstrauctions()
             );
         }
         return $this->json($response);
@@ -87,7 +90,8 @@ class HomeController extends AbstractController
                 'id'=>$recipe->getId(),
                 'name'=>$recipe->getName(),
                 'ingredients'=>$recipe->getIngredients(),
-                'image'=>$recipe->getImage()
+                'image'=>$recipe->getImage(),
+                'instructions'=>$recipe->getInstrauctions()
             ]);
         }
     }
