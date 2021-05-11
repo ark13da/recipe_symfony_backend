@@ -4,7 +4,7 @@
 
 namespace App\Controller;
 
-use App\Entity\Recipes;
+use App\Entity\RecipeList;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -38,7 +38,7 @@ class HomeController extends AbstractController
             $newIngredeints=$data['ingredients'];
             $newImage=$data['image'];
 
-            $newRecipe=new Recipes();
+            $newRecipe=new RecipeList();
             $newRecipe->setName($newName);
             $newRecipe->setIngredients($newIngredeints);
             $newRecipe->setImage($newImage);
@@ -58,7 +58,7 @@ class HomeController extends AbstractController
 
     public function getAllRecipe(): Response
     {
-        $recipes=$this->getDoctrine()->getRepository(Recipes::class)->findAll();
+        $recipes=$this->getDoctrine()->getRepository(RecipeList::class)->findAll();
         $response=[];
         foreach($recipes as $recipe){
             $response[]=array(
@@ -77,7 +77,7 @@ class HomeController extends AbstractController
 
     public function findRecipe($id): Response
     {
-        $recipe=$this->getDoctrine()->getRepository(Recipes::class)->find($id);
+        $recipe=$this->getDoctrine()->getRepository(RecipeList::class)->find($id);
         if(!$recipe){
             throw $this->createNotFoundException(
                 'nothing for '. $id
@@ -99,7 +99,7 @@ class HomeController extends AbstractController
     public function editRecipe($id, $newName, $newIngredeints, $newImage ): Response
     {
         $entityManager=$this->getDoctrine()->getManager();
-        $recipe=$this->getDoctrine()->getRepository(Recipes::class)->find($id);
+        $recipe=$this->getDoctrine()->getRepository(RecipeList::class)->find($id);
         if(!$recipe){
             throw $this->createNotFoundException(
                 'nothing for '. $id
@@ -120,7 +120,7 @@ class HomeController extends AbstractController
     public function removeRecipe($id): Response
     {
         $entityManager=$this->getDoctrine()->getManager();
-        $recipe=$this->getDoctrine()->getRepository(Recipes::class)->find($id);
+        $recipe=$this->getDoctrine()->getRepository(RecipeList::class)->find($id);
         if(!$recipe){
             throw $this->createNotFoundException(
                 'nothing for '. $id
