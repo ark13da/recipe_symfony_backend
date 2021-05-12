@@ -91,7 +91,7 @@ class HomeController extends AbstractController
                 'name'=>$recipe->getName(),
                 'ingredients'=>$recipe->getIngredients(),
                 'image'=>$recipe->getImage(),
-                'instructions'=>$recipe->getInstrauctions()
+                'instructions'=>$recipe->getInstructions()
             ]);
         }
     }
